@@ -13,15 +13,14 @@ public class PanelPrincipal extends JPanel {
         this.setLayout(new GridLayout(1, 2)); 
         com = new PanelComprador();
         exp = new PanelExpendedor();
-        this.setSize(600,400);
         this.setBackground(Color.CYAN);
         this.add(com); // añade al primer panel
         this.add(exp); // añade al segundo panel
     }
 
     @Override
-    public void paint(Graphics g) {
-        super.paint(g);
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
     }
 }
 
