@@ -1,4 +1,4 @@
-package main;
+package tarea2;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import java.awt.Graphics;
