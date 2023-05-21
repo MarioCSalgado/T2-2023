@@ -9,9 +9,10 @@ public class Ventana extends JFrame{
     
     public Ventana(){
         this.setLayout(new BorderLayout());
-        this.setSize(600, 400);//this.pack();
+        this.setSize(800, 650);
         panel = new PanelPrincipal();
         this.setTitle("Tarea2-Programacion2");
+        this.setResizable(false);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE); //cerrar aplicación
         this.add(panel,BorderLayout.CENTER); //se agrega al centro
         setLocationRelativeTo(null);
