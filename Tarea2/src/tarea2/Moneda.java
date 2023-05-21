@@ -1,6 +1,5 @@
 
 package tarea2;
-import java.util.ArrayList;
 /**
 *Clase Moneda que sirve como prototipo para las otras clases, retorna la refencia respectiva de la moneda, de su subclase de por si, además de dar la estructura de un metodo e implementar la interfaz Comparable
 */
@@ -31,13 +30,13 @@ abstract class Moneda implements Comparable<Moneda>{
     public abstract int getValor();
 }
 /**
-*Subclase Moneda1500, entrega su valor de referencia a su superclase, ademas de retornar su valor   
+*Subclase Moneda2000, entrega su valor de referencia a su superclase, ademas de retornar su valor   
 */
-class Moneda1500 extends Moneda{
+class Moneda2000 extends Moneda{
    /**
     *Metodo constructor, entrega su valor de referencia
     */ 
-    public Moneda1500() {
+    public Moneda2000() {
        super();
     }  
     /**
@@ -46,7 +45,7 @@ class Moneda1500 extends Moneda{
     */ 
     @Override
     public int getValor(){
-        return 1500;
+        return 2000;
     }
 }
 /**
