@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 class PanelComprador extends JPanel {
     Moneda m;
-    int resumen;
+    int resumen=0;
     Deposito<Moneda> monedero;
     Image Persona;
     JLabel vuelto;
@@ -21,7 +21,7 @@ class PanelComprador extends JPanel {
     JButton boton1000;
     JButton boton2000;
     JButton total;
-    
+    JButton mandarDinero;
     
     public PanelComprador() {
         setLayout(null);
@@ -63,8 +63,13 @@ class PanelComprador extends JPanel {
         boton2000.setIcon(new ImageIcon(moneda2000.getImage().getScaledInstance(boton2000.getWidth(), boton2000.getHeight(), Image.SCALE_SMOOTH)));
         this.add(boton2000);
         
+        mandarDinero = new JButton("Enviar $");
+        mandarDinero.setBounds(280,475, 80,60);
+        mandarDinero.setBackground(Color.GREEN);
+        this.add(mandarDinero);
+        
         total = new JButton("Dinero");
-        total.setBounds(285,350,80,65);
+        total.setBounds(285,350,80,60);
         total.setBackground(Color.LIGHT_GRAY);
         this.add(total);
 
@@ -77,6 +82,7 @@ class PanelComprador extends JPanel {
         oyenteDeMouse1000();
         oyenteDeMouse2000();
         oyenteDeTotal();
+        oyenteDeEnvio();
     }
 
     private void oyenteDeMouse100() {
@@ -199,20 +205,49 @@ class PanelComprador extends JPanel {
         total.addMouseListener(mouseTotal);
     }
         
+    private PanelExpendedor panelExpendedor;
+
+    public void setPanelExpendedor(PanelExpendedor panelExpendedor) {
+        this.panelExpendedor = panelExpendedor;
+    }  
+    private void oyenteDeEnvio(){
+        MouseListener mouseEnvio = new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {}
+
+            @Override
+            public void mousePressed(MouseEvent e) {}
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                if (panelExpendedor != null) {
+                    panelExpendedor.actualizarDineroDisponible(resumen);
+                    resumen=0;
+                    vuelto.setText("Dinero: " + resumen);
+                }
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+
+            @Override
+            public void mouseExited(MouseEvent e) {}
+        };
+        mandarDinero.addMouseListener(mouseEnvio);
+    }
+    
+    
+        
     private void calcularTotal() {
-        resumen = 0;
-        Deposito<Moneda> tempMonedero = new Deposito<>();
         Moneda monedaOut = monedero.getDeposito();
         while (monedaOut != null) {
             resumen += monedaOut.getValor();
-            tempMonedero.addDeposito(monedaOut);
             monedaOut = monedero.getDeposito();
         }
-        monedero = tempMonedero;
 
         if (vuelto == null) {
             vuelto = new JLabel();
-            vuelto.setBounds(285, 450, 150, 30);
+            vuelto.setBounds(285, 425, 150, 30);
             this.add(vuelto);
         }
         vuelto.setText("Dinero: " + resumen);
