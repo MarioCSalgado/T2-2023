@@ -8,14 +8,15 @@ import javax.swing.JPanel;
 public class PanelPrincipal extends JPanel {
     private PanelComprador com;
     private PanelExpendedor exp;
-
+    public static int resumen=0;
     public PanelPrincipal() {
         this.setLayout(new GridLayout(1, 2)); 
         com = new PanelComprador();
         exp = new PanelExpendedor();
         this.setBackground(Color.CYAN);
-        this.add(com); // añade al primer panel
-        this.add(exp); // añade al segundo panel
+        com.setPanelExpendedor(exp);
+        this.add(com); 
+        this.add(exp); 
     }
 
     @Override
@@ -23,5 +24,3 @@ public class PanelPrincipal extends JPanel {
         super.paintComponent(g);
     }
 }
-
-
