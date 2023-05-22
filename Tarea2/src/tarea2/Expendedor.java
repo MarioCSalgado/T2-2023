@@ -55,28 +55,28 @@ class Expendedor{
     *@param codigo Numero asociado al producto que se desea
     *@return Retorna el producto en si requerido, ya sea Bebida,Dulce,etc
     */
-    public Producto comprarProducto(Moneda m, int codigo) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException{
-      if (m == null) {//si la moneda no es valida         
-            throw new PagoIncorrectoException("Su Moneda no es valida");
+    public Producto comprarProducto(int Dinero, int codigo) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException{
+      if (Dinero==0) {//si la moneda no es valida         
+            throw new PagoIncorrectoException("No se tiene Dinero");
         }
         
         if(codigo>4 || codigo<1){
-            monVu.addDeposito(m);
+            //monVu.addDeposito(m);
             throw new NoHayProductoException("El numero ingresado para el codigo no es valido");
         }
 
         switch (codigo) {
             case COCA:
                 if (coca.sizeDeposito() == 0) {
-                    monVu.addDeposito(m);
+                    //monVu.addDeposito(m);
                     throw new NoHayProductoException("No quedan CocaCola's, los depositos estan vacios");
 
-                } else if (precioCoca > m.getSerie().getValor()) {
-                    monVu.addDeposito(m);
+                } else if (precioCoca > Dinero) {
+                    //monVu.addDeposito(m);
                     throw new PagoInsuficienteException("Pago Insuficiente");
 
                 } else {
-                    vuelto = m.getSerie().getValor() - precioCoca;
+                    vuelto = Dinero - precioCoca;
                     int numLoops = vuelto / 100;
                     for (int i = 0; i < numLoops; i++) {
                         monVu.addDeposito(new Moneda100());
@@ -86,15 +86,15 @@ class Expendedor{
 
             case SPRITE:
                 if (sprite.sizeDeposito()== 0) {
-                    monVu.addDeposito(m);
+                    //monVu.addDeposito(m);
                     throw new NoHayProductoException("No quedan Sprite's, los depositos estan vacios");
 
-                } else if (precioSprite > m.getSerie().getValor()) {
-                    monVu.addDeposito(m);
+                } else if (precioSprite > Dinero) {
+                    //monVu.addDeposito(m);
                     throw new PagoInsuficienteException("Pago Insuficiente");
 
                 } else {
-                    vuelto = m.getSerie().getValor() - precioSprite;
+                    vuelto = Dinero - precioSprite;
                     int numLoops = vuelto / 100;
                     for (int i = 0; i < numLoops; i++) {
                         monVu.addDeposito(new Moneda100());
@@ -104,15 +104,15 @@ class Expendedor{
                 }
             case SUPER8:
                 if (super8.sizeDeposito() == 0) {
-                    monVu.addDeposito(m);
+                    //monVu.addDeposito(m);
                     throw new NoHayProductoException("No quedan Super8's, los depositos estan vacios");
 
-                } else if (precioSuper8 > m.getSerie().getValor()) {
-                    monVu.addDeposito(m);
+                } else if (precioSuper8 > Dinero) {
+                    //monVu.addDeposito(m);
                     throw new PagoInsuficienteException("Pago Insuficiente");
 
                 } else {
-                    vuelto = m.getSerie().getValor() - precioSuper8;
+                    vuelto = Dinero - precioSuper8;
                     int numLoops = vuelto / 100;
                     for (int i = 0; i < numLoops; i++) {
                         monVu.addDeposito(new Moneda100());
@@ -123,15 +123,15 @@ class Expendedor{
                 }
             case TRENCITO:
                 if (trencito.sizeDeposito() == 0) {
-                    monVu.addDeposito(m);
+                    //monVu.addDeposito(m);
                     throw new NoHayProductoException("No quedan Trencito's, los depositos estan vacios");
 
-                } else if (precioTrencito > m.getSerie().getValor()) {
-                    monVu.addDeposito(m);
+                } else if (precioTrencito > Dinero) {
+                    //monVu.addDeposito(m);
                     throw new PagoInsuficienteException("Pago Insuficiente");
 
                 } else {
-                    vuelto = m.getSerie().getValor() - precioTrencito;
+                    vuelto = Dinero - precioTrencito;
                     int numLoops = vuelto / 100;
                     for (int i = 0; i < numLoops; i++) {
                         monVu.addDeposito(new Moneda100());
