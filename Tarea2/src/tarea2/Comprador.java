@@ -14,8 +14,8 @@ class Comprador{
     *@param cualExpende Se refiere al cual expendedor sera recibido
     *@param exp Es el expendedor en si
     */
-    public Comprador(Moneda m, int cualExpende, Expendedor exp) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {//1500,1400
-        Producto pd= exp.comprarProducto(m,cualExpende);
+    public Comprador(int DineroDisp, int cualExpende, Expendedor exp) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException {//1500,1400
+        Producto pd= exp.comprarProducto(DineroDisp,cualExpende);
         
         if(pd != null){
             sonido=pd.degustar();
@@ -44,4 +44,3 @@ class Comprador{
     }
  
 }
-
