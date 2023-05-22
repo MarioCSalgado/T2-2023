@@ -9,7 +9,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
+/**
+*clase PanelComprador para crear el panel que represente graficamente al comprador
+ * @field m, es la moneda que se utiliza para guardar en el deposito, un generico
+ * @field resumen, almacene la cantidad de dinero que se ingresa al expendedor
+ * @field monedero el deposito de las monedas que se ingresan al expendedor
+ * @field persona, variable image que almacena la imagen de persona(comprador)
+ * @field boton100,boton500,boton1000,boton2000,total, son los botones que representan las monedas y el total(valor en conjunto) de estas
+ */
 class PanelComprador extends JPanel {
     Moneda m;
     int resumen=0;
@@ -22,20 +29,27 @@ class PanelComprador extends JPanel {
     JButton boton2000;
     JButton total;
     JButton mandarDinero;
-    
+    /**
+     * metodo constructor inicializa y crea algunas variables, además de llamar al metodo Botones()
+     */
     public PanelComprador() {
         setLayout(null);
         Persona = new ImageIcon("Persona.jpg").getImage();
         monedero = new Deposito<>();
         Botones();
     }
-    
+    /**
+    *metodo que pinta las componentes en el JPanel respectivo
+     * @param Graphics g, corresponde al parametro que se recibe de graphics para dibujar
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(Persona, 0, 0, this.getWidth(), this.getHeight(), this);
     }
-    
+      /**
+    *metodo que crea los objetos botones y luego los posiciona con sus respectivas imagenes, además de instanciar al metodo de oyente de mouse
+     */
     private void Botones() {
         boton100 = new JButton();
         boton100.setBounds(300, 50, 60, 60);
@@ -75,7 +89,9 @@ class PanelComprador extends JPanel {
 
         oyentesDeMouse();
     }
-
+     /**
+    *Metodo que sirve para llamar a diferentes metodos de mouselistener
+     */
     private void oyentesDeMouse() {
         oyenteDeMouse100();
         oyenteDeMouse500();
@@ -84,7 +100,9 @@ class PanelComprador extends JPanel {
         oyenteDeTotal();
         oyenteDeEnvio();
     }
-
+     /**
+     * Metodo que representa el mouselistener en caso de de que el raton se posicione sobre el boton de moneda100
+     */
     private void oyenteDeMouse100() {
         MouseListener mouse100 = new MouseListener() {
             @Override
@@ -108,7 +126,9 @@ class PanelComprador extends JPanel {
         };
         boton100.addMouseListener(mouse100);
     }
-
+     /**
+     * Meotodo que representa el mouselistener en caso de de que el raton se posicione sobre el boton de moneda500
+     */
     private void oyenteDeMouse500() {
         MouseListener mouse500 = new MouseListener() {
             @Override
@@ -132,7 +152,9 @@ class PanelComprador extends JPanel {
         };
         boton500.addMouseListener(mouse500);
     }
-
+     /**
+     * Meotodo que representa el mouselistener en caso de de que el raton se posicione sobre el boton de moneda1000
+     */
     private void oyenteDeMouse1000() {
         MouseListener mouse1000 = new MouseListener() {
             @Override
@@ -156,7 +178,9 @@ class PanelComprador extends JPanel {
         };
         boton1000.addMouseListener(mouse1000);
     }
-
+     /**
+     * Meotodo que representa el mouselistener en caso de de que el raton se posicione sobre el boton de moneda2000
+     */
     private void oyenteDeMouse2000() {
         MouseListener mouse2000 = new MouseListener() {
             @Override
@@ -180,7 +204,9 @@ class PanelComprador extends JPanel {
         };
         boton2000.addMouseListener(mouse2000);
     }
-    
+        /**
+     * Meotodo que representa el mouselistener en caso de de que el raton se posicione sobre el boton de total
+     */
         private void oyenteDeTotal() {
         MouseListener mouseTotal = new MouseListener() {
             @Override
@@ -206,7 +232,9 @@ class PanelComprador extends JPanel {
     }
         
     private PanelExpendedor panelExpendedor;
-
+    /**
+    *Metodo para conectar el panel comprador con el panel expendedor, en el PanelPrincipal finaliza esta conexion
+    */
     public void setPanelExpendedor(PanelExpendedor panelExpendedor) {
         this.panelExpendedor = panelExpendedor;
     }  
@@ -236,7 +264,9 @@ class PanelComprador extends JPanel {
         mandarDinero.addMouseListener(mouseEnvio);
     }
     
-    
+    /**
+     * Metodo calcula el total del dinero del comprador
+     */
         
     private void calcularTotal() {
         Moneda monedaOut = monedero.getDeposito();

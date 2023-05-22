@@ -4,6 +4,9 @@ package tarea2;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
+/**
+ *metodo main para llamar a la ventana y ocurran las acciones subsiguientes
+ */
 public class Ventana extends JFrame{
     PanelPrincipal panel;
     

@@ -10,7 +10,7 @@ class Comprador{
     private int vuelto=0;
     /**
     *Metodo constructor de Comprador,calcula el vuelto y lo asocia a su atributo,ademas de asignar tambien el sonido del producto
-    *@param m Es la Moneda con la cual se compra
+    *@param DineroDisp es el dinero que hay disponible en el panelexpendedor
     *@param cualExpende Se refiere al cual expendedor sera recibido
     *@param exp Es el expendedor en si
     */

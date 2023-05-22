@@ -51,12 +51,12 @@ class Expendedor{
     
     /**
     *Metodo que sirve para escoger un producto dado sus parametros y obtenerlo en caso de estar, ademas devolver el vuelto en monedas de 100 que son creadas en el mismo metodo
-    *@param m Moneda con la cual se compra el producto
+    *@param Dinero, es el dinero que se encuentra en el expendedor
     *@param codigo Numero asociado al producto que se desea
     *@return Retorna el producto en si requerido, ya sea Bebida,Dulce,etc
     */
     public Producto comprarProducto(int Dinero, int codigo) throws PagoIncorrectoException, PagoInsuficienteException, NoHayProductoException{
-      if (Dinero==0) {//si la moneda no es valida         
+      if (Dinero==0) {//si no hay dinero
             throw new PagoIncorrectoException("No se tiene Dinero");
         }
         

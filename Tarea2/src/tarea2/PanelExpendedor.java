@@ -10,7 +10,12 @@ import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-
+/**
+ * clase que crea el panel grafico de expendedor y sus respectivos mecanismos
+ * @field expendedora,corresponde a la imagen de la misma
+ * @field coquita,sprite,super8,trencito, corresponden a las imagenes de los respectivos productos
+ * @field CokeBoton,SpriteBoton,Super8boton,TrencitoBoton,VueltoBoton, corresponde a las imagenes de los respectivos botones
+ */
 class PanelExpendedor extends JPanel {
     Image expendedora;
     private ImageIcon Coquita, Sprite, Super8, Trencito;
@@ -23,7 +28,9 @@ class PanelExpendedor extends JPanel {
     JLabel entregaVuelto;
     int dineroActual=0;
     
-
+     /**
+     * Metodo constructor de la clase, crea un objeto expendedor,y carga imagenes de productos y expendedora,además de llamara al metodo que agrega los botones
+     */
     public PanelExpendedor() {
         setLayout(null);
         exp= new Expendedor(12);
@@ -35,12 +42,17 @@ class PanelExpendedor extends JPanel {
         BotonesExpendedor();     
         labelsActualizables();
     }
-    
+    /**
+    *Metodo que recibe y actualiza el dinero que se envia desde PanelExpendedor en la variable dineroActual
+    */
     public void actualizarDineroDisponible(int nuevoDinero) {
         dineroActual = nuevoDinero + dineroActual;
         dineroDisponible();
     }
-
+    /**
+    *Metodo que utiliza el metodo graphics para dibujar las bebidas y la expendedora
+     * @param g, corresponde a el parametro recibido por el Graphics para dibujar en el JPanel
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -70,7 +82,9 @@ class PanelExpendedor extends JPanel {
         }
     }
     
-    
+    /**
+     * Metodo que pone los botones con sus respectivas imagenes el JPanel
+     */
     private void BotonesExpendedor() {
         CokeBoton = new JButton();
         CokeBoton.setBounds(240, 344, 67, 46);
@@ -104,13 +118,17 @@ class PanelExpendedor extends JPanel {
         
         oyentesDeMouseExpendedor();
     }
-    
+    /**
+    *Metodo que llama a una serie de metodos que contienen jlabels que se van a actualizando en el expendedor
+    */
     private void labelsActualizables(){
         dineroDisponibleInicial();
         resultadoCompra();
         entregaProductoExp();
     }
-    
+    /**
+    *Metodo que instancia todos los mouselistener de los botones de la maquina
+    */
     private void oyentesDeMouseExpendedor(){
         oyenteDeMouseBCoke();
         oyenteDeMouseBSprite();
@@ -118,7 +136,9 @@ class PanelExpendedor extends JPanel {
         oyenteDeMouseBSuper8();
         oyenteDeMouseBVuelto();
     }
-    
+    /**
+    *Metodo mouselistener para la Cokeboton
+    */		
     private void oyenteDeMouseBCoke(){
         MouseListener mouseCoke = new MouseListener() {
             @Override
@@ -154,6 +174,9 @@ class PanelExpendedor extends JPanel {
         };
         CokeBoton.addMouseListener(mouseCoke);
     }
+    /**
+    *Metodo mouselistener para el SpriteBoton
+    */	
     private void oyenteDeMouseBSprite(){
         MouseListener mouseSprite = new MouseListener() {
             @Override
@@ -189,7 +212,9 @@ class PanelExpendedor extends JPanel {
         };
         SpriteBoton.addMouseListener(mouseSprite);
     }
-    
+     /**
+    *Metodo mouselistener para el TrencitoBoton
+    */	
     private void oyenteDeMouseBTrencito(){
         MouseListener mouseTrencito = new MouseListener() {
             @Override
@@ -224,7 +249,9 @@ class PanelExpendedor extends JPanel {
         };
         TrencitoBoton.addMouseListener(mouseTrencito);
     }
-    
+     /**
+    *Metodo mouselistener para el Super8Boton
+    */
     private void oyenteDeMouseBSuper8(){
         MouseListener mouseSuper8 = new MouseListener() {
             @Override
@@ -260,7 +287,9 @@ class PanelExpendedor extends JPanel {
         };
         Super8boton.addMouseListener(mouseSuper8);
     }
-    
+     /**
+    *Metodo mouselistener para el boton de vuelto
+    */
     private void oyenteDeMouseBVuelto(){
         MouseListener mouseVuelto = new MouseListener() {
             @Override
@@ -288,7 +317,9 @@ class PanelExpendedor extends JPanel {
         };
         VueltoBoton.addMouseListener(mouseVuelto);
     }
-    
+    /**
+    *Metodo que inicia un jlabel que nos dice cuanto dinero hay inicialmente en la expendedora
+    */
     private void dineroDisponibleInicial(){
         dineroDisponible = new JLabel();
         String dinero = String.valueOf(dineroActual);
@@ -299,12 +330,16 @@ class PanelExpendedor extends JPanel {
         dineroDisponible.setBounds(245,160,50,17);
         this.add(dineroDisponible);
     }
-    
+    /**
+    *Metodo que actualiza la cantidad de dinero en el jlabel respectivo
+    */
     private void dineroDisponible(){
         String dineroMom = String.valueOf(dineroActual);
         dineroDisponible.setText("$ "+dineroMom);
     }
-    /**********Metodos de Resultado de la Compra***************/
+    /**
+    *Metodo que agrega el resultado de compra
+    */
     private void resultadoCompra(){
         compra= new JLabel();
         compra.setBounds(246, 435, 50, 40);
@@ -312,29 +347,39 @@ class PanelExpendedor extends JPanel {
         compra.setIcon(new ImageIcon(espera.getImage().getScaledInstance(compra.getWidth(), compra.getHeight(), Image.SCALE_SMOOTH)));
         this.add(compra); 
     }
+    /**
+    *Metodo que pone el jlabel en expendedor en caso de espera del producto
+    */
     private void espera(){
         ImageIcon espera= new ImageIcon("espera.jpg");
         compra.setIcon(new ImageIcon(espera.getImage().getScaledInstance(compra.getWidth(), compra.getHeight(), Image.SCALE_SMOOTH)));
     }
+    /**
+    *Metodo que pone el jlabel en expendedor en caso de que se haya comprado el producto
+    */
     private void correcto(){
         ImageIcon imagenCorrecto=new ImageIcon("correcto.jpg");
         compra.setIcon(new ImageIcon(imagenCorrecto.getImage().getScaledInstance(compra.getWidth(), compra.getHeight(), Image.SCALE_SMOOTH)));
     }
-    
+    /**
+    *Metodo que pone el jlabel en expendedor en caso de que no se haya podido comprar el producto por falta de dinero
+    */
     private void incorrecto(){
         ImageIcon imagenIncorrecto=new ImageIcon("incorrecto.jpg");
         compra.setIcon(new ImageIcon(imagenIncorrecto.getImage().getScaledInstance(compra.getWidth(), compra.getHeight(), Image.SCALE_SMOOTH)));
     }
     
-    /********************************************************/
-    
-    /*********Metodos de EntregaProducto********/
+    /**
+    *Metodo que entrega el producto, osea agrega el jlabel a la parte final del expendedor al realizarse la compra
+    */
     private void entregaProductoExp(){
         entregaProducto= new JLabel();
         entregaProducto.setLocation(60,520);
         this.add(entregaProducto);
     }
-    
+     /**
+    *Metodo que entrega el producto, en este caso cocacola, dado lo explicado anteriormente
+    */
     private void entregaCoca() {
         ImageIcon imCoca = new ImageIcon("cocafinal.png");
         entregaProducto.setLocation(90,506);
@@ -350,7 +395,9 @@ class PanelExpendedor extends JPanel {
         entregaProducto.setIcon(nuevaImagenIcono);
         entregaProducto.setSize(nuevoAncho, nuevoAlto);
     }
-
+    /**
+    *Metodo que entrega el producto, en este caso sprite, dado lo explicado anteriormente
+    */
     private void entregaSprite() {
         ImageIcon imSprite = new ImageIcon("Sprite.png");
         entregaProducto.setLocation(80,506);
@@ -366,7 +413,9 @@ class PanelExpendedor extends JPanel {
         entregaProducto.setIcon(nuevaImagenIcono);
         entregaProducto.setSize(nuevoAncho, nuevoAlto);
     }
-
+    /**
+    *Metodo que entrega el producto, en este caso trencito, dado lo explicado anteriormente
+    */
     private void entregaTrencito() {
         ImageIcon imTrencito = new ImageIcon("Trencito.png");
         entregaProducto.setLocation(70,514);
@@ -382,7 +431,9 @@ class PanelExpendedor extends JPanel {
         entregaProducto.setIcon(nuevaImagenIcono);
         entregaProducto.setSize(nuevoAncho, nuevoAlto);
     }
-
+    /**
+    *Metodo que entrega el producto, en este caso super8, dado lo explicado anteriormente
+    */
     private void entregaSuper8() {
         ImageIcon imSuper8 = new ImageIcon("Super8.png");
         entregaProducto.setLocation(60,514);
@@ -399,7 +450,9 @@ class PanelExpendedor extends JPanel {
         entregaProducto.setSize(nuevoAncho, nuevoAlto);
 
     }
-   /***********************************************************************/ 
+   /**
+   *Metodo que agrega las monedas del vuelto a la parte de abajo del expendedor si es que ocurre su evento en el boton respectivo de vuelto
+   */
     private void pintarMonedas(){
         entregaProducto.setBounds(80,500,60,50);//en este caso el Producto es el vuelto
         ImageIcon entVuelto = new ImageIcon("vueltoEntrega.jpg");
